@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>BookBazaar</title>
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<!-- Header -->
+<header>
+  <div class="wrap row-between">
+    <div class="brand">
+  <h1>📚 BookBazaar</h1>
+</div>
+    <nav class="row">
+      <form class="search">
+        <input name="q" placeholder="Search by title, author, or ISBN" />
+        <button class="btn" type="submit">Search</button>
+      </form>
+      <a href="#auth">Sign in</a>
+      <a href="#cart">Cart <span class="chip" id="cart-count">0</span></a>
+    </nav>
+  </div>
+  <!-- Bottom Navigation -->
+<div class="bottom-nav">
+  <button class="nav-btn" title="Home">🏠</button>
+  <button class="nav-btn" title="Cart">🛒</button>
+  <button class="nav-btn" title="Favorites">❤️</button>
+</div>
+</header>
+
+<!-- Main -->
+<main class="wrap">
+
+<h2>Available books</h2>
+<section class="grid">
+<!-- Book Card -->
+<article class="card">
+<a href="#book-1"><img src="https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?w=800" alt="Clean Code" /></a>
+<div class="p16">
+<h3><a href="#book-1">Clean Code</a></h3>
+<p class="muted">Robert C. Martin</p>
+<div class="row-between">
+<div class="price">₹799</div>
+<button class="btn add-to-cart" data-title="Clean Code" data-price="799">Add to Cart</button>
+</div>
+</div>
+</article>
+
+
+<article class="card">
+<a href="#book-2"><img src="https://images.unsplash.com/photo-1528207776546-365bb710ee93?w=800" alt="CLRS" /></a>
+<div class="p16">
+<h3><a href="#book-2">Introduction to Algorithms</a></h3>
+<p class="muted">Cormen, Leiserson, Rivest, Stein</p>
+<div class="row-between">
+<div class="price">₹1499</div>
+<button class="btn add-to-cart" data-title="Introduction to Algorithms" data-price="1499">Add to Cart</button>
+</div>
+</div>
+</article>
+</section>
+</main>
+
+
+<!-- Cart Modal -->
+<div id="cart" class="modal">
+<div class="panel">
+<header>
+<h3>Your Cart</h3>
+<a href="#" class="close">✕</a>
+</header>
+<div id="cart-items" class="p16"></div>
+<div class="p16 row-between">
+<span>Total:</span>
+<strong id="cart-total">₹0</strong>
+</div>
+</div>
+</div>
+
+
+<!-- Auth Modal -->
+<div id="auth" class="modal">
+<div class="panel">
+<header>
+<h3>Login / Register</h3>
+<a href="#" class="close">✕</a>
+```
