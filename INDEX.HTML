@@ -9,60 +9,27 @@
 <body>
 <!-- Header -->
 <header>
-  <div class="wrap row-between">
-    <div class="brand">
-  <h1>📚 BookBazaar</h1>
-</div>
-    <nav class="row">
+  <div class="wrap">
+    <div class="top-nav row-between">
       <form class="search">
         <input name="q" placeholder="Search by title, author, or ISBN" />
         <button class="btn" type="submit">Search</button>
       </form>
-      <a href="#auth">Sign in</a>
-      <a href="#cart">Cart <span class="chip" id="cart-count">0</span></a>
-    </nav>
+      <div class="auth-nav">
+        <a href="#auth">Sign in</a>
+        <a href="#upload-book">Upload Books</a>
+      </div>
+    </div>
+    <div class="brand-nav">
+      <h1>📚 BookBazaar</h1>
+      <nav class="main-nav">
+        <a href="home.html">Home</a>
+        <a href="#cart">Cart <span class="chip" id="cart-count">0</span></a>
+        <a href="favorites.html">Favorites</a>
+      </nav>
+    </div>
   </div>
-  <!-- Bottom Navigation -->
-<div class="bottom-nav">
-  <button class="nav-btn" title="Home">🏠</button>
-  <button class="nav-btn" title="Cart">🛒</button>
-  <button class="nav-btn" title="Favorites">❤️</button>
-</div>
 </header>
-
-<!-- Main -->
-<main class="wrap">
-
-<h2>Available books</h2>
-<section class="grid">
-<!-- Book Card -->
-<article class="card">
-<a href="#book-1"><img src="https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?w=800" alt="Clean Code" /></a>
-<div class="p16">
-<h3><a href="#book-1">Clean Code</a></h3>
-<p class="muted">Robert C. Martin</p>
-<div class="row-between">
-<div class="price">₹799</div>
-<button class="btn add-to-cart" data-title="Clean Code" data-price="799">Add to Cart</button>
-</div>
-</div>
-</article>
-
-
-<article class="card">
-<a href="#book-2"><img src="https://images.unsplash.com/photo-1528207776546-365bb710ee93?w=800" alt="CLRS" /></a>
-<div class="p16">
-<h3><a href="#book-2">Introduction to Algorithms</a></h3>
-<p class="muted">Cormen, Leiserson, Rivest, Stein</p>
-<div class="row-between">
-<div class="price">₹1499</div>
-<button class="btn add-to-cart" data-title="Introduction to Algorithms" data-price="1499">Add to Cart</button>
-</div>
-</div>
-</article>
-</section>
-</main>
-
 
 <!-- Cart Modal -->
 <div id="cart" class="modal">
@@ -79,11 +46,121 @@
 </div>
 </div>
 
-
 <!-- Auth Modal -->
 <div id="auth" class="modal">
 <div class="panel">
 <header>
 <h3>Login / Register</h3>
 <a href="#" class="close">✕</a>
-```
+</header>
+<div class="auth-tabs">
+  <button class="tab-btn active" data-tab="login">Login</button>
+  <button class="tab-btn" data-tab="register">Register</button>
+</div>
+
+<!-- Login Form -->
+<div id="login-form" class="auth-form active">
+  <form id="login-form-element">
+    <div class="form-group">
+      <label for="login-email">Email</label>
+      <input type="email" id="login-email" required>
+    </div>
+    <div class="form-group">
+      <label for="login-password">Password</label>
+      <input type="password" id="login-password" required>
+    </div>
+    <button type="submit" class="btn btn-primary">Login</button>
+  </form>
+</div>
+
+<!-- Register Form -->
+<div id="register-form" class="auth-form">
+  <form id="register-form-element">
+    <div class="form-group">
+      <label for="register-name">Full Name</label>
+      <input type="text" id="register-name" required>
+    </div>
+    <div class="form-group">
+      <label for="register-email">Email</label>
+      <input type="email" id="register-email" required>
+    </div>
+    <div class="form-group">
+      <label for="register-password">Password</label>
+      <input type="password" id="register-password" required>
+    </div>
+    <div class="form-group">
+      <label for="register-confirm-password">Confirm Password</label>
+      <input type="password" id="register-confirm-password" required>
+    </div>
+    <button type="submit" class="btn btn-primary">Register</button>
+  </form>
+</div>
+</div>
+</div>
+
+<!-- Book Detail Modal -->
+<div id="book-detail-modal" class="modal">
+<div class="panel book-detail-panel">
+<header>
+<h3 id="modal-book-title">Book Details</h3>
+<a href="#" class="close">✕</a>
+</header>
+<div id="book-detail-content" class="p16">
+  <!-- Book details will be loaded here dynamically -->
+</div>
+</div>
+</div>
+
+<!-- Book Upload Modal -->
+<div id="upload-book" class="modal">
+<div class="panel">
+<header>
+<h3>Upload New Book</h3>
+<a href="#" class="close">✕</a>
+</header>
+<form id="book-upload-form">
+  <div class="form-group">
+    <label for="book-title">Book Title</label>
+    <input type="text" id="book-title" required>
+  </div>
+  <div class="form-group">
+    <label for="book-author">Author Name</label>
+    <input type="text" id="book-author" required>
+  </div>
+  <div class="form-group">
+    <label for="book-publisher">Publisher Name</label>
+    <input type="text" id="book-publisher" required>
+  </div>
+  <div class="form-group">
+    <label for="book-price">Price (₹)</label>
+    <input type="number" id="book-price" required>
+  </div>
+  <div class="form-group">
+    <label for="book-discount">Discount (%) (Optional)</label>
+    <input type="number" id="book-discount" min="0" max="100">
+  </div>
+  <div class="form-group">
+    <label for="book-description">Book Description</label>
+    <textarea id="book-description" rows="4"></textarea>
+  </div>
+  <div class="form-group">
+    <label for="book-cover">Book Cover Image</label>
+    <input type="file" id="book-cover" accept="image/*" required>
+    <div id="image-preview" class="mt-10"></div>
+  </div>
+  <button type="submit" class="btn btn-primary">Upload Book</button>
+</form>
+</div>
+</div>
+
+<!-- Main Content for Books Display -->
+<main class="wrap">
+  <h1>Available books</h1>
+  <section class="grid">
+    <!-- Books will be displayed here dynamically -->
+  </section>
+</main>
+
+<script src="index.js"></script>
+</body>
+</html>

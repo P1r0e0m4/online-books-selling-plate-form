@@ -1,0 +1,313 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>BookBazaar - Home</title>
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<!-- Header -->
+<header>
+  <div class="wrap row-between">
+    <div class="brand">
+      <h1>📚 BookBazaar</h1>
+    </div>
+    <nav class="row">
+      <form class="search">
+        <input name="q" placeholder="Search by title, author, or ISBN" />
+        <button class="btn" type="submit">Search</button>
+      </form>
+      <a href="INDEX.HTML#auth">Sign in</a>
+    </nav>
+  </div>
+  <!-- Bottom Navigation -->
+  <div class="bottom-nav">
+    <a href="home.html" class="nav-btn active" title="Home">🏠 Home</a>
+    <a href="INDEX.HTML#cart" class="nav-btn" title="Cart">🛒 Cart</a>
+    <a href="favorites.html" class="nav-btn" title="Favorites">❤️ Favorites</a>
+  </div>
+</header>
+
+<!-- Main -->
+<main class="wrap">
+ <h1>Available books</h1>
+<section class="grid">
+<!-- Book Card -->
+<article class="card">
+<a href="#book-1"><img src="https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?w=800" alt="Clean Code" /></a>
+<div class="p16">
+<h3><a href="#book-1">Clean Code</a></h3>
+<p class="muted">Author name:Robert C. Martin</p>
+<p class="muted">ISBN: 978-0136083238</p>
+<p class="muted">Publisher: Prentice Hall</p>
+<div class="row-between">
+ <div>
+        <span class="actual-price"> Actual price:₹999</span> <!-- Old price -->
+        <div><span class="discount-price">Discounted price:₹799</span></div> <!-- Discounted price -->
+        <span class="discount">Discount(20% OFF)</span>
+  </div>
+<button class="btn add-to-cart" data-title="Clean Code" data-price="799">Add to Cart</button>
+</div>
+</div>
+</article>
+<!-- Book Detail Section (Opens when clicked) -->
+<section id="book-1" class="book-detail">
+  <h2>Clean Code</h2>
+  <p><strong>Author:</strong> Robert C. Martin</p>
+  <p><strong>Publisher:</strong> Prentice Hall</p>
+  <p><strong>ISBN:</strong> 978-0136083238</p>
+  <p><strong>Price:</strong> ₹799 (20% discount from ₹999)</p>
+
+  <h3>About this Book</h3>
+  <p>
+    *Clean Code* is a handbook of agile software craftsmanship.  
+    It explains principles, patterns, and practices of writing clean code.  
+    Developers will learn how to transform bad code into good code and improve maintainability.
+  </p>
+</section>
+
+<script src="index.js"></script>
+</body>
+</html>
+<article class="card">
+  <!-- Book Image linking to details -->
+  <a href="#book-2">
+    <img src="https://images.unsplash.com/photo-1528207776546-365bb710ee93?w=800" 
+         alt="Introduction to Algorithms" />
+  </a>
+
+  <div class="p16">
+    <!-- Book Title -->
+    <h3><a href="#book-2">Introduction to Algorithms</a></h3>
+
+    <!-- Author, ISBN, Publisher -->
+    <p class="muted"><strong>Author:</strong> Cormen, Leiserson, Rivest, Stein</p>
+    <p class="muted"><strong>ISBN:</strong> 978-0262033848</p>
+    <p class="muted"><strong>Publisher:</strong> MIT Press</p>
+
+    <!-- Prices -->
+    <div class="row-between">
+      <div>
+        <span class="actual-price">₹1999</span> <!-- Old price -->
+        <div><span class="discount-price">₹1499</span></div> <!-- Discounted price -->
+        <span class="discount">25% OFF</span>
+      </div>
+
+      <!-- Add to Cart Button -->
+      <button class="btn add-to-cart" 
+              data-title="Introduction to Algorithms" 
+              data-price="1499">
+        Add to Cart
+      </button>
+    </div>
+  </div>
+</article>
+
+<!-- Book Detail Section (Opens when clicked) -->
+<section id="book-2" class="book-detail">
+  <h2>Introduction to Algorithms</h2>
+  <p><strong>Author:</strong> Cormen, Leiserson, Rivest, Stein</p>
+  <p><strong>Publisher:</strong> MIT Press</p>
+  <p><strong>ISBN:</strong> 978-0262033848</p>
+  <p><strong>Price:</strong> ₹1499 (25% discount from ₹1999)</p>
+
+  <h3>About this Book</h3>
+  <p>
+    *Introduction to Algorithms* (commonly known as CLRS) is one of the most comprehensive 
+    textbooks on algorithms. It covers a wide range of algorithms in depth, yet makes them 
+    accessible to readers of all levels. It is widely used in universities around the world.
+  </p>
+</section>
+<!-- Book Card 3 -->
+<article class="card">
+  <a href="#book-3">
+    <img src="https://images.unsplash.com/photo-1512820790803-83ca734da794?w=800" 
+         alt="Design Patterns Book" />
+  </a>
+
+  <div class="p16">
+    <h3><a href="#book-3">Design Patterns</a></h3>
+
+    <p class="muted"><strong>Author:</strong> Erich Gamma, Richard Helm, Ralph Johnson, John Vlissides</p>
+    <p class="muted"><strong>ISBN:</strong> 978-0201633610</p>
+    <p class="muted"><strong>Publisher:</strong> Addison-Wesley</p>
+
+    <div class="row-between">
+      <div>
+        <span class="actual-price">₹1599</span>
+        <div><span class="discount-price">₹1299</span></div>
+        <span class="discount">19% OFF</span>
+      </div>
+      <button class="btn add-to-cart" 
+              data-title="Design Patterns" 
+              data-price="1299">
+        Add to Cart
+      </button>
+    </div>
+  </div>
+</article>
+
+<!-- Book Detail Section -->
+<section id="book-3" class="book-detail">
+  <h2>Design Patterns</h2>
+  <p><strong>Author:</strong> Erich Gamma, Richard Helm, Ralph Johnson, John Vlissides</p>
+  <p><strong>Publisher:</strong> Addison-Wesley</p>
+  <p><strong>ISBN:</strong> 978-0201633610</p>
+  <p><strong>Price:</strong> ₹1299 (19% discount from ₹1599)</p>
+
+  <h3>About this Book</h3>
+  <p>
+    Known as the "Gang of Four" book, *Design Patterns* is a classic in software engineering.  
+    It introduces 23 design patterns that provide reusable solutions to common problems 
+    in object-oriented programming.
+  </p>
+</section>
+<!-- Book Card 4 -->
+<article class="card">
+  <a href="#book-4">
+    <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=800" 
+         alt="The Pragmatic Programmer" />
+  </a>
+
+  <div class="p16">
+    <h3><a href="#book-4">The Pragmatic Programmer</a></h3>
+
+    <p class="muted"><strong>Author:</strong> Andrew Hunt, David Thomas</p>
+    <p class="muted"><strong>ISBN:</strong> 978-0135957059</p>
+    <p class="muted"><strong>Publisher:</strong> Addison-Wesley</p>
+
+    <div class="row-between">
+      <div>
+        <span class="actual-price">₹1399</span>
+        <div><span class="discount-price">₹1099</span></div>
+        <span class="discount">21% OFF</span>
+      </div>
+      <button class="btn add-to-cart" 
+              data-title="The Pragmatic Programmer" 
+              data-price="1099">
+        Add to Cart
+      </button>
+    </div>
+  </div>
+</article>
+
+<!-- Book Detail Section -->
+<section id="book-4" class="book-detail">
+  <h2>The Pragmatic Programmer</h2>
+  <p><strong>Author:</strong> Andrew Hunt, David Thomas</p>
+  <p><strong>Publisher:</strong> Addison-Wesley</p>
+  <p><strong>ISBN:</strong> 978-0135957059</p>
+  <p><strong>Price:</strong> ₹1099 (21% discount from ₹1399)</p>
+
+  <h3>About this Book</h3>
+  <p>
+    *The Pragmatic Programmer* is one of the most influential books in software development.  
+    It covers practical tips, techniques, and philosophies that help developers write 
+    flexible, adaptable, and maintainable code.
+  </p>
+</section>
+<article class="card">
+  <a href="#book-5"><img src="https://images.unsplash.com/photo-1512820790803-83ca734da794?w=800" alt="The Pragmatic Programmer" /></a>
+  <div class="p16">
+    <h3><a href="#book-5">The Pragmatic Programmer</a></h3>
+    <p class="muted">Author name: Andrew Hunt, David Thomas</p>
+    <p class="muted">ISBN: 978-0201616224</p>
+    <p class="muted">Publisher: Addison-Wesley</p>
+    <div class="row-between">
+      <div>
+        <span class="actual-price">Actual price: ₹899</span>
+        <div><span class="discount-price">Discounted price: ₹749</span></div>
+        <span class="discount">Discount (17% OFF)</span>
+      </div>
+      <button class="btn add-to-cart" data-title="The Pragmatic Programmer" data-price="749">Add to Cart</button>
+    </div>
+  </div>
+</article>
+<article class="card">
+  <a href="#book-6"><img src="https://images.unsplash.com/photo-1532614338840-ab30cf10ed36?w=800" alt="Artificial Intelligence: A Modern Approach" /></a>
+  <div class="p16">
+    <h3><a href="#book-6">Artificial Intelligence: A Modern Approach</a></h3>
+    <p class="muted">Author name: Stuart Russell, Peter Norvig</p>
+    <p class="muted">ISBN: 978-0134610993</p>
+    <p class="muted">Publisher: Pearson</p>
+    <div class="row-between">
+      <div>
+        <span class="actual-price">Actual price: ₹2199</span>
+        <div><span class="discount-price">Discounted price: ₹1899</span></div>
+        <span class="discount">Discount (14% OFF)</span>
+      </div>
+      <button class="btn add-to-cart" data-title="Artificial Intelligence: A Modern Approach" data-price="1899">Add to Cart</button>
+    </div>
+  </div>
+</article>
+<article class="card">
+  <a href="#book-7"><img src="https://images.unsplash.com/photo-1517430816045-df4b7de11d1d?w=800" alt="Python Crash Course" /></a>
+  <div class="p16">
+    <h3><a href="#book-7">Python Crash Course</a></h3>
+    <p class="muted">Author name: Eric Matthes</p>
+    <p class="muted">ISBN: 978-1593276034</p>
+    <p class="muted">Publisher: No Starch Press</p>
+    <div class="row-between">
+      <div>
+        <span class="actual-price">Actual price: ₹1099</span>
+        <div><span class="discount-price">Discounted price: ₹899</span></div>
+        <span class="discount">Discount (18% OFF)</span>
+      </div>
+      <button class="btn add-to-cart" data-title="Python Crash Course" data-price="899">Add to Cart</button>
+    </div>
+  </div>
+</article>
+<article class="card">
+  <a href="#book-8"><img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=800" alt="Design Patterns" /></a>
+  <div class="p16">
+    <h3><a href="#book-8">Design Patterns</a></h3>
+    <p class="muted">Author name: Erich Gamma, Richard Helm, Ralph Johnson, John Vlissides</p>
+    <p class="muted">ISBN: 978-0201633610</p>
+    <p class="muted">Publisher: Addison-Wesley</p>
+    <div class="row-between">
+      <div>
+        <span class="actual-price">Actual price: ₹1599</span>
+        <div><span class="discount-price">Discounted price: ₹1349</span></div>
+        <span class="discount">Discount (16% OFF)</span>
+      </div>
+      <button class="btn add-to-cart" data-title="Design Patterns" data-price="1349">Add to Cart</button>
+    </div>
+  </div>
+</article>
+<article class="card">
+  <a href="#book-9"><img src="https://images.unsplash.com/photo-1518779578993-ec3579fee39f?w=800" alt="Deep Learning" /></a>
+  <div class="p16">
+    <h3><a href="#book-9">Deep Learning</a></h3>
+    <p class="muted">Author name: Ian Goodfellow, Yoshua Bengio, Aaron Courville</p>
+    <p class="muted">ISBN: 978-0262035613</p>
+    <p class="muted">Publisher: MIT Press</p>
+    <div class="row-between">
+      <div>
+        <span class="actual-price">Actual price: ₹2599</span>
+        <div><span class="discount-price">Discounted price: ₹2199</span></div>
+        <span class="discount">Discount (15% OFF)</span>
+      </div>
+      <button class="btn add-to-cart" data-title="Deep Learning" data-price="2199">Add to Cart</button>
+    </div>
+  </div>
+</article>
+<article class="card">
+  <a href="#book-10"><img src="https://images.unsplash.com/photo-1529101091764-c3526daf38fe?w=800" alt="Database System Concepts" /></a>
+  <div class="p16">
+    <h3><a href="#book-10">Database System Concepts</a></h3>
+    <p class="muted">Author name: Abraham Silberschatz, Henry F. Korth, S. Sudarshan</p>
+    <p class="muted">ISBN: 978-0078022159</p>
+    <p class="muted">Publisher: McGraw-Hill</p>
+    <div class="row-between">
+      <div>
+        <span class="actual-price">Actual price: ₹1799</span>
+        <div><span class="discount-price">Discounted price: ₹1499</span></div>
+        <span class="discount">Discount (17% OFF)</span>
+      </div>
+      <button class="btn add-to-cart" data-title="Database System Concepts" data-price="1499">Add to Cart</button>
+    </div>
+  </div>
+</article>
+</section>
+</main>

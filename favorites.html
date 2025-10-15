@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>BookBazaar - Favorites</title>
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<!-- Header -->
+<header>
+  <div class="wrap row-between">
+    <div class="brand">
+      <h1>📚 BookBazaar</h1>
+    </div>
+    <nav class="row">
+      <form class="search">
+        <input name="q" placeholder="Search by title, author, or ISBN" />
+        <button class="btn" type="submit">Search</button>
+      </form>
+      <a href="INDEX.HTML#auth">Sign in</a>
+    </nav>
+  </div>
+  <!-- Bottom Navigation -->
+  <div class="bottom-nav">
+    <a href="home.html" class="nav-btn" title="Home">🏠 Home</a>
+    <a href="INDEX.HTML#cart" class="nav-btn" title="Cart">🛒 Cart</a>
+    <a href="favorites.html" class="nav-btn active" title="Favorites">❤️ Favorites</a>
+  </div>
+</header>
+
+<!-- Main Content -->
+<main class="wrap">
+  <div id="favorites-container">
+    <!-- Favorites will be loaded here by JavaScript -->
+    <p>Loading your favorites...</p>
+  </div>
+</main>
+
+<script src="index.js"></script>
+</body>
+</html>

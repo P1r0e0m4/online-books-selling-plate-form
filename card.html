@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>BookBazaar - Book Card</title>
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<!-- Header -->
+<header>
+  <div class="wrap row-between">
+    <div class="brand">
+      <h1>📚 BookBazaar</h1>
+    </div>
+    <nav class="row">
+      <form class="search">
+        <input name="q" placeholder="Search by title, author, or ISBN" />
+        <button class="btn" type="submit">Search</button>
+      </form>
+      <a href="INDEX.HTML#auth">Sign in</a>
+    </nav>
+  </div>
+  <!-- Bottom Navigation -->
+  <div class="bottom-nav">
+    <a href="home.html" class="nav-btn" title="Home">🏠 Home</a>
+    <a href="INDEX.HTML#cart" class="nav-btn" title="Cart">🛒 Cart</a>
+    <a href="favorites.html" class="nav-btn" title="Favorites">❤️ Favorites</a>
+  </div>
+</header>
+
+<!-- Main Content -->
+<main class="wrap">
+  <h1>Book Details</h1>
+  <div class="book-card-container">
+    <div class="book-card" id="book-details">
+      <!-- Book details will be loaded here dynamically -->
+    </div>
+  </div>
+</main>
+
+<!-- Book Card Template -->
+<template id="book-card-template">
+  <article class="card book-full-card">
+    <div class="book-image">
+      <img src="" alt="Book Cover" class="book-cover" />
+    </div>
+    <div class="book-info p16">
+      <h2 class="book-title"></h2>
+      <p class="book-author"><strong>Author:</strong> <span></span></p>
+      <p class="book-isbn"><strong>ISBN:</strong> <span></span></p>
+      <p class="book-publisher"><strong>Publisher:</strong> <span></span></p>
+      <div class="book-price-container">
+        <div class="price-info">
+          <span class="actual-price"></span>
+          <div><span class="discount-price"></span></div>
+          <span class="discount"></span>
+        </div>
+      </div>
+      <div class="book-description">
+        <h3>Description</h3>
+        <p></p>
+      </div>
+      <div class="book-actions">
+        <button class="btn btn-primary add-to-cart">Add to Cart</button>
+        <button class="btn favorite-btn">❤️ Add to Favorites</button>
+      </div>
+    </div>
+  </article>
+</template>
+
+<script src="index.js"></script>
+<script>
+  // Card.js - Specific functionality for the card page
+  document.addEventListener('DOMContentLoaded', function() {
+    // Get book ID from URL parameter
+    const urlParams = new URLSearchParams(window.location.search);
+    const bookId = urlParams.get('id');
+    
+    if (bookId) {
+      displayBookDetails(bookId);
+    } else {
+      document.getElementById('book-details').innerHTML = '<p>No book selected. Please select a book from the home page.</p>';
+    }
+    
+    // Function to display book details
+    function displayBookDetails(bookId) {
+      // Get books from localStorage
+      const savedBooks = JSON.parse(localStorage.getItem('books')) || [];
+      const book = savedBooks.find(b => b.id === bookId);
+      
+      if (!book) {
+        document.getElementById('book-details').innerHTML = '<p>Book not found.</p>';
+        return;
+      }
+      
+      // Clone the template
+      const template = document.getElementById('book-card-template');
+      const bookCard = template.content.cloneNode(true);
+      
+      // Fill in book details
+      bookCard.querySelector('.book-cover').src = book.coverUrl || 'https://via.placeholder.com/300x450?text=No+Cover';
+      bookCard.querySelector('.book-cover').alt = book.title;
+      bookCard.querySelector('.book-title').textContent = book.title;
+      bookCard.querySelector('.book-author span').textContent = book.author;
+      bookCard.querySelector('.book-isbn span').textContent = book.isbn || 'N/A';
+      bookCard.querySelector('.book-publisher span').textContent = book.publisher;
+      
+      // Price information
+      const actualPrice = parseFloat(book.price);
+      const discount = parseFloat(book.discount || 0);
+      const discountedPrice = actualPrice - (actualPrice * (discount / 100));
+      
+      bookCard.querySelector('.actual-price').textContent = `₹${actualPrice.toFixed(2)}`;
+      bookCard.querySelector('.discount-price').textContent = `₹${discountedPrice.toFixed(2)}`;
+      bookCard.querySelector('.discount').textContent = discount > 0 ? `${discount}% OFF` : '';
+      
+      // Description
+      bookCard.querySelector('.book-description p').textContent = book.description || 'No description available.';
+      
+      // Set up action buttons
+      const addToCartBtn = bookCard.querySelector('.add-to-cart');
+      addToCartBtn.dataset.id = book.id;
+      addToCartBtn.dataset.title = book.title;
+      addToCartBtn.dataset.price = discountedPrice.toFixed(2);
+      
+      const favoriteBtn = bookCard.querySelector('.favorite-btn');
+      favoriteBtn.dataset.id = book.id;
+      
+      // Check if book is in favorites
+      const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+      if (currentUser) {
+        const favorites = JSON.parse(localStorage.getItem('favorites')) || {};
+        const userFavorites = favorites[currentUser.email] || [];
+        
+        if (userFavorites.includes(book.id)) {
+          favoriteBtn.textContent = '❤️ Remove from Favorites';
+          favoriteBtn.classList.add('active');
+        }
+      }
+      
+      // Add event listeners
+      addToCartBtn.addEventListener('click', function() {
+        const cart = JSON.parse(localStorage.getItem('cart')) || [];
+        const existingItem = cart.find(item => item.id === book.id);
+        
+        if (existingItem) {
+          existingItem.quantity += 1;
+        } else {
+          cart.push({
+            id: book.id,
+            title: book.title,
+            price: discountedPrice,
+            quantity: 1
+          });
+        }
+        
+        localStorage.setItem('cart', JSON.stringify(cart));
+        updateCart();
+        alert(`${book.title} added to cart!`);
+      });
+      
+      favoriteBtn.addEventListener('click', function() {
+        if (!currentUser) {
+          alert('Please sign in to add books to favorites.');
+          return;
+        }
+        
+        const favorites = JSON.parse(localStorage.getItem('favorites')) || {};
+        const userFavorites = favorites[currentUser.email] || [];
+        
+        if (userFavorites.includes(book.id)) {
+          // Remove from favorites
+          const index = userFavorites.indexOf(book.id);
+          userFavorites.splice(index, 1);
+          favoriteBtn.textContent = '❤️ Add to Favorites';
+          favoriteBtn.classList.remove('active');
+          alert(`${book.title} removed from favorites!`);
+        } else {
+          // Add to favorites
+          userFavorites.push(book.id);
+          favoriteBtn.textContent = '❤️ Remove from Favorites';
+          favoriteBtn.classList.add('active');
+          alert(`${book.title} added to favorites!`);
+        }
+        
+        favorites[currentUser.email] = userFavorites;
+        localStorage.setItem('favorites', JSON.stringify(favorites));
+      });
+      
+      // Append the card to the container
+      document.getElementById('book-details').appendChild(bookCard);
+    }
+  });
+</script>
+</body>
+</html>
